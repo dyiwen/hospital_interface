@@ -31,15 +31,14 @@ $ python multi_server.py
     * function: service()
         * 选择合适获取DICOM文件的方式 或 本地编写function；
         * file_number 设置预测最小文件个数；
-        * Dicomfilter().CT() 根据实际情况编写过滤条件
+        * 该脚本的过滤函数添加至了pulldata.py
     * function: main() 
-        * 可选择开启历史前后片对比功能，history_patient_list[:] 默认获取所有历史，若只想获取最新一条检查 history_patient_list[:1] 
+        * 对数据库的查询信息进行数据清洗 
     * function: Multi() 
-        * cpuCount= 改成4或者6，默认是CPU支持的最大进程数       
+        * cpuCount= 根据CPU的核数分配进程（通过CPUCOUNT()计算），一般最大为12,可根据显示情况写死       
     * channelCount 对应多通道的DLSERVER
     
-* sqlserver.py 根据医院数据库结构本地编写SQL     
-* server.conf  server_sleep 为每轮之间暂停的时间，可根据实际需要修改，建议15-60之间    
+* sqlserver.py 根据医院数据库结构本地编写SQL，封装的SQL类位于DAL，支持sqlserver,mysql,oracle     
+* server.conf  一些常用参数可以在此修改    
 * constants.py  取消注释out函数中的print用于观察     
  
-
