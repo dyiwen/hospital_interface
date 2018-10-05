@@ -20,8 +20,8 @@ def select_pacs_exam_path_per_id(patient_id):
     :return: path 影像路径
 
     """ 
-    orc = DAL.Oracle("tx", "tx", "172.19.20.30", 1521, "ORCL")
-    sql = "select distinct unc_path from pacs31.TX_PATIENT_BASIC_INFO where accessionno = '{}' and exam_date_time >= trunc(sysdate)\
+    orc = DAL.Oracle("user", "pwd", "host", port, "ORCL")
+    sql = "select distinct unc_path from VIEW_NAME where accessionno = '{}' and exam_date_time >= trunc(sysdate)\
     and REGEXP_LIKE(body,'胸部|腹部') and REGEXP_LIKE(exam_item,'胸|上腹部') and modality like 'CT' and REGEXP_LIKE(status,'上传图像完成|诊断完成|暂存')".format(patient_id)
     rowcount,result = orc.execute(sql)
     orc.close()
@@ -38,8 +38,8 @@ def select_id_list_from_study_status(TEST):
     if TEST:
         return [[str(i), ""] for i in np.random.randint(10000000, 99999999, 10)]
     #--------------------------------------------------------------------------------------------------
-    orc = DAL.Oracle("tx", "tx", "172.19.20.30", 1521, "ORCL")    
-    sql = "select distinct accessionno,exam_item,patient_source,modality,status from pacs31.TX_PATIENT_BASIC_INFO where exam_date_time >= trunc(sysdate) \
+    orc = DAL.Oracle("user", "pwd", "host", port, "ORCL")    
+    sql = "select distinct accessionno,exam_item,patient_source,modality,status from VIEW_NAME where exam_date_time >= trunc(sysdate) \
     and REGEXP_LIKE(body,'胸部|腹部') and REGEXP_LIKE(exam_item,'胸|上腹部') and modality like 'CT' and REGEXP_LIKE(status,'上传图像完成|诊断完成|暂存')"
     rowcount,result = orc.execute(sql)
     orc.close()

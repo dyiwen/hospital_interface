@@ -1,4 +1,4 @@
-智能辅助阅片-接口（对接医院）
+数据拉取-接口（对接医院）
 ===
  * tools/ 工具集合
  * reset.py 重置/生成配置文件（./server.conf）
@@ -37,8 +37,10 @@ $ python multi_server.py
     * function: Multi() 
         * cpuCount= 根据CPU的核数分配进程（通过CPUCOUNT()计算），一般最大为12,可根据显示情况写死       
     * channelCount 对应多通道的DLSERVER
-    
+   
+* dcmlib 脱敏包，对图像的处理图像敏感信息
+* log 日志管理目录，在此追踪脚本日常运行
 * sqlserver.py 根据医院数据库结构本地编写SQL，封装的SQL类位于DAL，支持sqlserver,mysql,oracle     
 * server.conf  一些常用参数可以在此修改    
-* constants.py  取消注释out函数中的print用于观察     
+* constants.py  根据日志级别分别封装,取消注释out函数中的print用于观察     
  
